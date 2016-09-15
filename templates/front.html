@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Casa de Quinones Blog</title>
+    </head>
+    <style type="text/css">
+       body {
+           font-family: sans-serif;
+           width: 800px;
+           margin: 0 auto;
+           padding: 10px;
+       }
+
+       .error {
+           color: red;
+       }
+
+       label {
+           display: block;
+           font-size: 20px;
+       }
+
+       input[type=text] {
+           width: 400px;
+           font-size: 20px;
+           padding: 2px;
+       }
+
+       textarea {
+           width: 400px;
+           height: 200px;
+           font-size: 17px;
+           font-family: monospace;
+       }
+
+       input[type=submit] {
+           font-size: 24px;
+       }
+
+       hr {
+           margin: 20px auto;
+       }
+
+       .art + .art {
+           margin-top: 20px;
+       }
+
+       .art-title {
+           font-weight: bold;
+           font-size: 20px;
+       }
+
+       .art-body {
+           margin: 0;
+           font-size: 17px;
+       }
+        </style>
+    <body>
+        <h1>Casa de Quinones</h1>
+        <h2>Welcome to my food blog, I hope you enjoy our receipes!</h2>
+
+        <form method="post">
+            <lable>
+                <div>Title:</div>
+                <input type="text" name="title" value="{{title}}">
+            </lable>
+
+            <lable>
+                <div>Blog Post:</div>
+                <textarea name="blog">{{blog}}</textarea>
+            </lable>
+
+            <div class ="error">{{error}}</div>
+            <input type="submit">
+        </form>
+
+        <hr>
+
+        {% for blog in blogs %}
+            <div class ="blog">
+                <div class ="blog-title">{{blog.title}}</div>
+                <pre class ="blog-body">{{blog.blog}}</pre>
+            </div>
+        {% endfor %}
+
+    </body>
+</html>

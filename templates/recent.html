@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Casa de Quinones Blog</title>
+    </head>
+
+    <body>
+        <h1>Here are my most recent receipes, enjoy!</h1>
+
+        {% for blog in blogs %}
+            <div class ="blog">
+                <div class ="blog-title">{{blog.title}}</div>
+                <div class ="blog-body">{{blog.blog}}</div>
+            </div>
+        {% endfor %}
+
+    </body>
+</html>
