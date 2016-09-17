@@ -57,8 +57,9 @@ class MainPage(Handler):
         if title and blog:
             a = NewPost(title = title, blog = blog)
             a.put()
+            s = a.key().id()
 
-            self.redirect("/blog")
+            self.redirect('/blog/%s' % (s))
         else:
             error = "Dont forget to include both the body and title!"
             self.render_front(title, blog, error)
@@ -74,5 +75,10 @@ class BlogHandler(Handler):
     def get(self):
         self.render_recent()
 
+class SinglePost(Handler):
+    def get(self, id):
+        s = NewPost.get_by_id(int(id))
+        self.render("singlepost.html", title=s.title , blog=s.blog)
+
 app = webapp2.WSGIApplication([
-    ('/newpost', MainPage), ('/blog', BlogHandler)], debug=True)
+    ('/newpost', MainPage), ('/', BlogHandler), webapp2.Route('/blog/<id:\d+>', SinglePost)], debug=True)
